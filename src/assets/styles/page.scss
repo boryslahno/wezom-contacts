@@ -1,0 +1,55 @@
+.page {
+   $this: &;
+
+   flex: auto;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   margin: 0;
+   padding: 0;
+
+   &__head {
+      position: relative;
+      display: block;
+      margin: 0 0 20px;
+      padding: 0;
+   }
+
+   &__body {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+   }
+
+   &--home {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .react-logo {
+         width: 100%;
+         max-width: 250px;
+
+         @media (prefers-reduced-motion: no-preference) {
+            animation: react-logo-spin infinite 20s linear;
+         }
+      }
+   }
+   &--notFound {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .notFoundTitle {
+         font-size: 90px;
+         color: #db402c;
+         font-weight: 900;
+         line-height: 30px;
+      }
+   }
+   &--profile {
+      .age {
+         font-size: 18px !important;
+      }
+   }
+}

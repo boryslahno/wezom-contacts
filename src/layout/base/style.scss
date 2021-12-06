@@ -1,0 +1,49 @@
+.layout {
+   $this: &;
+
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh !important;
+   line-height: 1.214;
+
+   &__header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: auto !important;
+      padding: 10px 2vw !important; //why???
+      background-color: #fff !important;
+      box-shadow: 0 0 10px 0 rgba(#333, 0.33);
+      line-height: inherit !important;
+
+      @media (min-width: 768px) {
+         padding: 10px 2.6vw !important;
+      }
+   }
+
+   &__content {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 2vw;
+      background-color: #fff !important;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: cover;
+
+      @media (min-width: 768px) {
+         padding: 1.25vw 2.6vw;
+      }
+   }
+
+   &__footer {
+      padding: 12px 2vw !important;
+      background-color: #f1f1f1 !important;
+      text-align: center;
+
+      @media (min-width: 768px) {
+         padding: 1.25vw 2.6vw !important;
+      }
+   }
+}

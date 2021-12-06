@@ -1,0 +1,15 @@
+.header {
+   position: relative;
+   display: block;
+   height: 45px;
+
+   & > .ant-row {
+      height: 100%;
+   }
+   .dropdown {
+      color: gray;
+      &:hover {
+         color: #40a3ff;
+      }
+   }
+}

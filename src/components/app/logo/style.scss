@@ -1,0 +1,15 @@
+.logo {
+   position: relative;
+   display: block;
+   width: 57px;
+   margin: 0;
+   padding: 0;
+
+   &__img {
+      max-width: 100%;
+   }
+
+   &.is-active {
+      pointer-events: none;
+   }
+}

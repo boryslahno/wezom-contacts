@@ -1,0 +1,1 @@
+export { View as TableView } from './view';
