@@ -9,8 +9,10 @@ const View = ({ contacts, fetchContacts }) => {
       fetchContacts();
    }, [fetchContacts])
 
+   const handelReloadData = (event) => fetchContacts()
+
    return (
-      <div>
+      <div className={'page page--contacts'}>
          <Row justify={'space-between'}>
             <Col>
                <Typography.Title level={2}>Contacts</Typography.Title>
@@ -22,6 +24,7 @@ const View = ({ contacts, fetchContacts }) => {
                      shape={'circle'}
                      icon={<ReloadOutlined />}
                      style={{ 'marginRight': '10px' }}
+                     onClick={handelReloadData}
                   />
                </Tooltip>
                <Tooltip title={'Tiled view'}>

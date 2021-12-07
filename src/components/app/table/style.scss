@@ -1,0 +1,21 @@
+.table {
+   width: 100%;
+   .ant-table {
+      background-color: hsla(0, 0%, 100%, 0.001) !important;
+   }
+   .ant-table-container {
+      padding: 20px;
+      background-color: #fff !important;
+      //box-shadow: 0 5px 5px hsl(0deg 0% 40% / 10%);
+   }
+   .ant-table-title {
+      margin-bottom: 14px !important;
+      padding: 10px !important;
+      background-color: #fafafa !important;
+   }
+   .ant-table-footer {
+      margin-top: 14px !important;
+      padding: 10px !important;
+      background-color: #fafafa !important;
+   }
+}

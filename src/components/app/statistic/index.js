@@ -1,0 +1,1 @@
+export { View as Statistic } from './view';

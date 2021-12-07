@@ -5,3 +5,5 @@ export { NavBar } from './app/navbar';
 export { Modal } from './app/modal';
 export { InformationString } from './app/infoLine';
 export { TableView } from './app/table';
+export { FilterForm } from './app/filterForm';
+export { Statistic } from './app/statistic';
