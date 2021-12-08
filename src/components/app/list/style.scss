@@ -1,0 +1,29 @@
+.list {
+   width: 100%;
+
+   .card-contact {
+      .ant-card-cover {
+         position: relative;
+         img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 2px 2px 0 0;
+         }
+      }
+   }
+
+   .ant-list-header {
+      margin-bottom: 14px !important;
+      padding: 10px !important;
+      background-color: #fafafa !important;
+   }
+
+   .ant-list-footer {
+      margin-top: 14px !important;
+      padding: 10px !important;
+      background-color: #fafafa !important;
+   }
+}

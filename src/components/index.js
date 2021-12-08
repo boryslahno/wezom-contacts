@@ -7,3 +7,4 @@ export { InformationString } from './app/infoLine';
 export { TableView } from './app/table';
 export { FilterForm } from './app/filterForm';
 export { Statistic } from './app/statistic';
+export { ListView } from './app/list';

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Row, Col, Typography, Tooltip, Button } from 'antd';
 import { ReloadOutlined, UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { TableView } from '../../components';
+import { TableView, ListView } from '../../components';
 
 const View = ({ contacts, fetchContacts }) => {
 
@@ -9,7 +9,9 @@ const View = ({ contacts, fetchContacts }) => {
       fetchContacts();
    }, [fetchContacts])
 
-   const handelReloadData = (event) => fetchContacts()
+   const handelReloadData = () => fetchContacts()
+
+   const tempFlag = false;
 
    return (
       <div className={'page page--contacts'}>
@@ -36,7 +38,7 @@ const View = ({ contacts, fetchContacts }) => {
             </Col>
          </Row>
          <Row>
-            <TableView contacts={contacts} />
+            {tempFlag ? <TableView contacts={contacts} /> : <ListView contacts={contacts} />}
          </Row>
       </div>
    );

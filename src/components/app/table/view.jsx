@@ -1,5 +1,5 @@
 import React from "react";
-import { modifyDataForTable } from '../../../utils/modifyDataForTable';
+import { modifyDataForView } from '../../../utils/modifyDataForView';
 import { Table, Avatar, Typography, Tag } from 'antd';
 import { NavLink } from "react-router-dom";
 import { InformationString } from "../infoLine";
@@ -9,7 +9,7 @@ import './style.scss';
 
 const View = ({ contacts }) => {
 
-   const dataSource = modifyDataForTable(contacts);
+   const dataSource = modifyDataForView(contacts);
 
    const columns = [
       {
@@ -29,7 +29,7 @@ const View = ({ contacts }) => {
          key: 'fullName',
          render: ({ fullName, userId }) => <NavLink to={'/profile'}>{fullName}</NavLink>,
          sorter: (firstContact, secondContact) =>
-            firstContact.fullName.localeCompare(secondContact.fullName),
+            firstContact.fullName.fullName.localeCompare(secondContact.fullName.fullName),
          align: 'left',
       },
       {
