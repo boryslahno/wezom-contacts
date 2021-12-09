@@ -2,12 +2,16 @@ import React from "react";
 import { Modal, Button, Form, Input, Row, Col } from 'antd';
 import { CloseOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from '../../../store/auth/auth';
 
-const View = ({ isModalOpen, closeModal, fetchPersonalData, setAuthorized }) => {
+const View = () => {
 
    const history = useNavigate();
+   const dispatch = useDispatch();
+   const isModalOpen = useSelector(state => state.auth.isModalOpen);
 
-   const hideModal = () => closeModal()
+   const hideModal = () => dispatch(authActions.closeModal());
 
    const passwordValidate = password => {
       if (/[^\w.-]/gi.test(password)) {
@@ -20,11 +24,11 @@ const View = ({ isModalOpen, closeModal, fetchPersonalData, setAuthorized }) => 
    }
 
    const handleSubmit = formData => {
-      localStorage.setItem('auth', JSON.stringify({ profileSeedKey: formData.email }))
-      setAuthorized(true);
-      closeModal();
+      localStorage.setItem('auth', JSON.stringify({ profileSeedKey: formData.email }));
+      dispatch(authActions.setAuthorized(true));
+      dispatch(authActions.closeModal());
+      dispatch(authActions.fetchPersonalData(formData.email));
       history('/profile');
-      fetchPersonalData();
    }
 
    return (

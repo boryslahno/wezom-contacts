@@ -1,1 +1,1 @@
-export { ProfilePage } from './container';
+export { View as ProfilePage } from './view';

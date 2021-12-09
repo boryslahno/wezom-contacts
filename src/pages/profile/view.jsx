@@ -1,15 +1,13 @@
 import React from "react";
-import { Row, Col, Image, Typography, Divider, Tag } from 'antd';
-import { getFullName } from "../../utils/getFullName";
-import { getResidence } from "../../utils/getResidence";
-import { getNationality } from '../../utils/getNationalities';
-import { InformationString } from '../../components/app/infoLine'
+import { Row, Col, Image, Typography, Spin } from 'antd';
+import { ProfileInformation } from '../../components';
+import { useSelector } from "react-redux";
 
-const View = ({ profileData }) => {
+const View = () => {
 
-   const fullName = getFullName(profileData.name);
-   const residence = getResidence(profileData.location);
-   const [countryName, tagColor] = getNationality(profileData.nat);
+   const { personalInformation, isLoading } = useSelector(state => state.auth);
+
+   console.log(isLoading);
 
    return (
       <div className={'page page--profile'}>
@@ -19,42 +17,26 @@ const View = ({ profileData }) => {
             </Col>
             <Col>
                <Row gutter={[28, { md: 28 }]} justify={'center'}>
-                  <Col lg={11}>
-                     <Image
-                        width={250}
-                        src={profileData.picture.large}
-                     />
-                  </Col>
-                  <Col lg={13}>
-
-                     <Typography.Title level={3}>
-                        {fullName}
-                        <Typography.Text type={'secondary'} className={'age'}>
-                           {` (${profileData.dob.age} years)`}
-                        </Typography.Text>
-                     </Typography.Title>
-
-                     <Divider dashed className={'_m-bottom_15'} />
-
-                     <InformationString information={profileData.email} className={'_m-bottom_10'}>
-                        <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
-                     </InformationString>
-
-                     <InformationString information={profileData.phone} className={'_m-bottom_10'}>
-                        <a href={`tel:${profileData.phone}`}>{profileData.phone}</a>
-                     </InformationString>
-
-                     <InformationString information={residence.join('')} className={'_m-bottom_15'}>
-                        <Typography.Text>
-                           <strong>{residence[0]}</strong>
-                           <br />
-                           {residence[1]}
-                        </Typography.Text>
-                     </InformationString>
-
-                     <Divider dashed className={'_m-bottom_15'} />
-                     <Tag color={tagColor}>{countryName}</Tag>
-                  </Col>
+                  {isLoading ?
+                     <Col><Spin size={'large'} /></Col> :
+                     <>
+                        <Col lg={11}>
+                           <Image
+                              width={250}
+                              src={personalInformation.avatar.url}
+                           />
+                        </Col>
+                        <Col lg={13}>
+                           <Typography.Title level={3}>
+                              {personalInformation.fullName.fullName}
+                              <Typography.Text type={'secondary'} className={'age'}>
+                                 {` (${personalInformation.birthday.age})`}
+                              </Typography.Text>
+                           </Typography.Title>
+                           <ProfileInformation profileData={personalInformation} />
+                        </Col>
+                     </>
+                  }
                </Row>
             </Col>
          </Row>

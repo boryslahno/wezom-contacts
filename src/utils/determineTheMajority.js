@@ -1,4 +1,3 @@
-import { getGendersCount } from "./getGendersCount"
 
 export const determineTheMajority = genderCounts => {
 

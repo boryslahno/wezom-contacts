@@ -1,1 +1,1 @@
-export { Modal } from './container';
+export { View as Modal } from './view';

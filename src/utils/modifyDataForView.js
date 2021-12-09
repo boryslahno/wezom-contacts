@@ -1,6 +1,7 @@
 import { getFullName } from './getFullName';
 import { getResidence } from './getResidence';
 import { getNationality } from './getNationalities';
+import { getBirthDay } from './getBirthday';
 
 const modifyDataForView = contacts =>
    contacts.map((contact, index) => {
@@ -8,11 +9,12 @@ const modifyDataForView = contacts =>
          key: contact.location.postcode.toString() + index,
          avatar: { url: contact.picture.large, userId: index + 1 },
          fullName: { fullName: getFullName(contact.name), userId: index + 1 },
-         birthday: ['Friday, 9/9/1977, 7:45:17 AM', '44 years'],
+         birthday: { fullFormat: getBirthDay(contact.dob.date), age: `${contact.dob.age} years` },
          email: contact.email,
          phone: contact.phone,
          location: getResidence(contact.location),
          nationality: getNationality(contact.nat),
+         gender: contact.gender,
       }
    })
 

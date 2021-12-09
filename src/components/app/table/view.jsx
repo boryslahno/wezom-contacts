@@ -1,15 +1,15 @@
 import React from "react";
-import { modifyDataForView } from '../../../utils/modifyDataForView';
 import { Table, Avatar, Typography, Tag } from 'antd';
 import { NavLink } from "react-router-dom";
 import { InformationString } from "../infoLine";
 import { FilterForm } from '../filterForm';
 import { Statistic } from '../statistic';
 import './style.scss';
+import { useSelector } from "react-redux";
 
 const View = ({ contacts }) => {
 
-   const dataSource = modifyDataForView(contacts);
+   const isLoading = useSelector(state => state.contacts.isLoading);
 
    const columns = [
       {
@@ -36,7 +36,9 @@ const View = ({ contacts }) => {
          title: 'Birthday',
          dataIndex: 'birthday',
          key: 'birthday',
-         render: birthday => <Typography.Text > {birthday[0]}<br />{birthday[1]}</Typography.Text>,
+         render: birthday => <Typography.Text>
+            {birthday.fullFormat}<br />{birthday.age}
+         </Typography.Text>,
          width: 250,
       },
       {
@@ -60,11 +62,12 @@ const View = ({ contacts }) => {
          title: 'Location',
          dataIndex: 'location',
          key: 'location',
-         render: location => <InformationString information={location.join('')}>
+         render: location => <InformationString
+            information={Object.values(location).join('')}>
             <Typography.Text>
-               <strong>{location[0]}</strong>
+               <strong>{location.country}</strong>
                <br />
-               {location[1]}
+               {location.address}
             </Typography.Text>
          </InformationString>,
          width: 250,
@@ -73,20 +76,21 @@ const View = ({ contacts }) => {
          title: 'Nationality',
          dataIndex: 'nationality',
          key: 'nationality',
-         render: nationality => <Tag color={nationality[1]}>{nationality[0]}</Tag>,
+         render: nationality => <Tag color={nationality.tagColor}>{nationality.name}</Tag>,
          align: 'right',
 
       },
    ];
    return (
       <Table
-         dataSource={dataSource}
+         dataSource={contacts}
          columns={columns}
          scroll={{ x: 1200 }}
          size="small"
          className={'table'}
          title={() => <FilterForm />}
          footer={() => <Statistic contacts={contacts} />}
+         loading={isLoading}
       />
    );
 }

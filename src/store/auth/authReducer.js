@@ -1,21 +1,26 @@
-import { OPEN_MODAL, CLOSE_MODAL, FETCH_PERSONAL_DATA, SET_AUTHORIZED } from '../../types/types';
+import { types } from './types';
 
 const intitialState = {
-   isAuthorized: false,
    isModalOpen: false,
    personalInformation: {},
+   isLoading: false,
+   isAuthorized: false,
 }
 
 const authReducer = (state = intitialState, action) => {
    switch (action.type) {
-      case OPEN_MODAL:
+      case types.AUTH_OPEN_MODAL:
          return { ...state, isModalOpen: true }
-      case CLOSE_MODAL:
+      case types.AUTH_CLOSE_MODAL:
          return { ...state, isModalOpen: false }
-      case SET_AUTHORIZED:
+      case types.AUTH_SET_AUTHORIZED:
          return { ...state, isAuthorized: action.payload }
-      case FETCH_PERSONAL_DATA:
+      case types.AUTH_FETCH_DATA:
          return { ...state, personalInformation: action.payload }
+      case types.AUTH_START_FETCHING:
+         return { ...state, isLoading: true }
+      case types.AUTH_STOP_FETCHING:
+         return { ...state, isLoading: false }
       default:
          return state;
    }

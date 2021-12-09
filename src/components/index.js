@@ -8,3 +8,5 @@ export { TableView } from './app/table';
 export { FilterForm } from './app/filterForm';
 export { Statistic } from './app/statistic';
 export { ListView } from './app/list';
+export { ContactsControl } from './app/contactsControl';
+export { ProfileInformation } from './app/profileInfo';

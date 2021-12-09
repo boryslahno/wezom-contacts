@@ -1,4 +1,4 @@
-import { View } from './view';
+/*import { View } from './view';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -11,4 +11,4 @@ const mapDispatchToProps = null;
 
 const NavBar = connect(mapStateToProps, mapDispatchToProps)(View);
 
-export { NavBar };
+export { NavBar };*/

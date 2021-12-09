@@ -1,4 +1,6 @@
 
 export const getResidence = location =>
-   [`/${location.country}/`,
-   `${location.street.number} ${location.street.name}, ${location.city}, ${location.state} ${location.postcode}`]
+({
+   country: `/${location.country}/`,
+   address: `${location.street.number} ${location.street.name}, ${location.city}, ${location.state} ${location.postcode}`
+})

@@ -1,4 +1,4 @@
-import { View } from './view';
+/*import { View } from './view';
 import { connect } from 'react-redux'
 import { closeModal, fetchPersonalData, setAuthorized } from '../../../store/actions/auth'
 
@@ -16,4 +16,4 @@ const mapDispatchToProps = {
 
 const Modal = connect(mapStateToProps, mapDispatchToProps)(View);
 
-export { Modal };
+export { Modal };*/

@@ -2,8 +2,11 @@ import React, { useMemo } from "react";
 import './style.scss';
 import { publicRoutes, privateRoutes } from '../../../routes/routes';
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const View = ({ isAuth }) => {
+const View = () => {
+
+   const isAuth = useSelector(state => state.auth.isAuthorized);
 
    const publicRout = useMemo(() => [
       { name: 'Home', key: 'home' },

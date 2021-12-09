@@ -1,4 +1,7 @@
 import { NATIONALITIES } from '../constants/nationalities';
 
 export const getNationality = abbreviation =>
-   [NATIONALITIES[abbreviation].name, NATIONALITIES[abbreviation].color]
+({
+   name: NATIONALITIES[abbreviation].name,
+   tagColor: NATIONALITIES[abbreviation].color,
+})

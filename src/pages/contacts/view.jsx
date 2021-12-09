@@ -1,17 +1,35 @@
-import React, { useEffect } from "react";
-import { Row, Col, Typography, Tooltip, Button } from 'antd';
-import { ReloadOutlined, UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { TableView, ListView } from '../../components';
+import React, { useEffect, useState } from "react";
+import { Row, Col, Typography } from 'antd';
+import { TableView, ListView, ContactsControl } from '../../components';
+import { useDispatch, useSelector } from "react-redux";
+import { contactsActions } from '../../store/contacts/contacts';
 
-const View = ({ contacts, fetchContacts }) => {
+const View = () => {
+
+   if (!localStorage.getItem('view-mode')) {
+      localStorage.setItem('view-mode', 'tabular')
+   }
+
+   const [viewMode, setViewMode] = useState(localStorage.getItem('view-mode'));
+   const contacts = useSelector(state => state.contacts.contacts);
+   const dispatch = useDispatch();
 
    useEffect(() => {
-      fetchContacts();
-   }, [fetchContacts])
+      dispatch(contactsActions.fetchContacts());
+   }, [dispatch])
 
-   const handelReloadData = () => fetchContacts()
+   const handleReloadData = () => dispatch(contactsActions.fetchContacts());
 
-   const tempFlag = false;
+   const getViewMode = () => {
+      switch (viewMode) {
+         case 'tabular':
+            return (<TableView contacts={contacts} />);
+         case 'tiled':
+            return (<ListView contacts={contacts} />);
+         default:
+            return null;
+      }
+   }
 
    return (
       <div className={'page page--contacts'}>
@@ -20,25 +38,11 @@ const View = ({ contacts, fetchContacts }) => {
                <Typography.Title level={2}>Contacts</Typography.Title>
             </Col>
             <Col>
-               <Tooltip title={'Update data'}>
-                  <Button
-                     type="dashed"
-                     shape={'circle'}
-                     icon={<ReloadOutlined />}
-                     style={{ 'marginRight': '10px' }}
-                     onClick={handelReloadData}
-                  />
-               </Tooltip>
-               <Tooltip title={'Tiled view'}>
-                  <Button icon={<AppstoreOutlined />} />
-               </Tooltip>
-               <Tooltip title={'Tabular view'}>
-                  <Button type={'primary'} icon={<UnorderedListOutlined />} />
-               </Tooltip>
+               <ContactsControl reloadData={handleReloadData} setViewMode={setViewMode} />
             </Col>
          </Row>
          <Row>
-            {tempFlag ? <TableView contacts={contacts} /> : <ListView contacts={contacts} />}
+            {getViewMode()}
          </Row>
       </div>
    );

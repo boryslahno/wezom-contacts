@@ -1,36 +1,41 @@
 import React, { useEffect } from "react";
 import { Logo } from '../logo';
-import { Row, Col, Button, Dropdown, Menu, Typography, Avatar } from 'antd';
-import { LoginOutlined, DownOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Row, Col, Button, Dropdown, Menu, Typography, Avatar, Spin } from 'antd';
+import { LoginOutlined, DownOutlined, UserOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
 import { NavBar } from '../navbar';
 import { Modal } from '../modal';
 import './style.scss';
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { getFullName } from "../../../utils/getFullName";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from '../../../store/auth/auth';
 
-const View = ({ openModal, setAuthorized, fetchPersonalData, isAuth, name, avatar }) => {
+const View = () => {
 
    const history = useNavigate();
+   const dispatch = useDispatch();
+   const { isAuthorized, isLoading } = useSelector(state => state.auth);
+   const { fullName, avatar } = useSelector(state => state.auth.personalInformation)
 
-   const showModal = () => openModal()
-   //const name = getFullName(name);
+   const showModal = () => dispatch(authActions.openModal());
 
    useEffect(() => {
-      if (localStorage.getItem('auth')) {
-         setAuthorized(true);
-         fetchPersonalData();
+      const user = localStorage.getItem('auth');
+      if (user) {
+         const seedKey = JSON.parse(user).profileSeedKey;
+         dispatch(authActions.setAuthorized(true));
+         dispatch(authActions.fetchPersonalData(seedKey));
       }
-   }, [setAuthorized, fetchPersonalData])
+   }, [dispatch])
 
    const handleLogOut = () => {
       localStorage.removeItem('auth');
-      setAuthorized(false);
+      dispatch(authActions.setAuthorized(false));
       history('/');
    }
 
    const menu = (
-      <Menu>
+      <Menu style={{ 'width': '225px' }}>
          <Menu.Item key={'profile'}>
             <Typography.Text>
                <NavLink to={'/profile'}>
@@ -46,14 +51,17 @@ const View = ({ openModal, setAuthorized, fetchPersonalData, isAuth, name, avata
          </Menu.Item>
       </Menu>)
 
-   const button = isAuth ?
-      (<Dropdown overlay={menu} >
+   //Fix
+   const button = isAuthorized ?
+      (<Dropdown overlay={menu} className={'dropdown'}>
          <Row align={'middle'} gutter={8} className={'_cursor_pointer'}>
             <Col>
-               <Typography.Text className={'dropdown'}>Hello! Ms. Lola Smith <DownOutlined /></Typography.Text>
+               <Typography.Text type={'secondary'} className={'dropdown__title'}>
+                  Hello! {fullName?.fullName} <DownOutlined />
+               </Typography.Text>
             </Col>
             <Col>
-               <Avatar src={avatar} size={48} />
+               <Avatar src={avatar?.url} size={48} />
             </Col>
          </Row>
       </Dropdown>)
@@ -74,12 +82,14 @@ const View = ({ openModal, setAuthorized, fetchPersonalData, isAuth, name, avata
                <Logo />
             </Col>
             <Col className={'_flex-grow'}>
-               <Row type={'flex'} align={'middle'}>
+               <Row type={'flex'} gutter={16} align={'middle'}>
                   <Col className={'_flex-grow'}>
                      <NavBar />
                   </Col>
                   <Col>
-                     {button}
+                     {isLoading ?
+                        <Spin indicator={<LoadingOutlined spin style={{ 'color': 'gray' }} />} /> :
+                        button}
                   </Col>
                </Row>
             </Col>

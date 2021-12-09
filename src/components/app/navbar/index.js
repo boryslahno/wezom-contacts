@@ -1,1 +1,1 @@
-export { NavBar } from './container';
+export { View as NavBar } from './view';

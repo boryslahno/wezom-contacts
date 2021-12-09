@@ -1,1 +1,1 @@
-export { ContactsPage } from './container';
+export { View as ContactsPage } from './view';
