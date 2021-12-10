@@ -3,6 +3,7 @@ import { Row, Col, Typography } from 'antd';
 import { TableView, ListView, ContactsControl } from '../../components';
 import { useDispatch, useSelector } from "react-redux";
 import { contactsActions } from '../../store/contacts/contacts';
+import { Navigate } from "react-router-dom";
 
 const View = () => {
 
@@ -11,21 +12,25 @@ const View = () => {
    }
 
    const [viewMode, setViewMode] = useState(localStorage.getItem('view-mode'));
-   const contacts = useSelector(state => state.contacts.contacts);
+   //const isAuthorized = useSelector(state => state.auth.isAuthorized);
    const dispatch = useDispatch();
 
    useEffect(() => {
       dispatch(contactsActions.fetchContacts());
    }, [dispatch])
 
+   /*if (!isAuthorized) {
+      return <Navigate to={'/not-found'} />
+   }*/
+
    const handleReloadData = () => dispatch(contactsActions.fetchContacts());
 
    const getViewMode = () => {
       switch (viewMode) {
          case 'tabular':
-            return (<TableView contacts={contacts} />);
+            return (<TableView />);
          case 'tiled':
-            return (<ListView contacts={contacts} />);
+            return (<ListView />);
          default:
             return null;
       }
@@ -38,7 +43,10 @@ const View = () => {
                <Typography.Title level={2}>Contacts</Typography.Title>
             </Col>
             <Col>
-               <ContactsControl reloadData={handleReloadData} setViewMode={setViewMode} />
+               <ContactsControl
+                  reloadData={handleReloadData}
+                  setViewMode={setViewMode}
+                  viewMode={viewMode} />
             </Col>
          </Row>
          <Row>

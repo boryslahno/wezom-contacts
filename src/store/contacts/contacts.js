@@ -1,6 +1,8 @@
 import { randomIntegerInRange } from '../../utils/random';
 import { modifyDataForView } from '../../utils/modifyDataForView';
 import { types } from './types';
+import { notification } from 'antd';
+import { filterActions } from '../filter/filter';
 
 export const contactsActions = Object.freeze({
 
@@ -14,6 +16,30 @@ export const contactsActions = Object.freeze({
          type: types.CONTACTS_STOP_FETCHING,
       }
    },
+   setTableCurrentPage(currentPage) {
+      return {
+         type: types.CONTACTS_SET_TABLE_CURRENT_PAGE,
+         payload: currentPage,
+      }
+   },
+   setTablePageSize(pageSize) {
+      return {
+         type: types.CONTACTS_SET_TABLE_PAGE_SIZE,
+         payload: pageSize,
+      }
+   },
+   setTiledCurrentPage(currentPage) {
+      return {
+         type: types.CONTACTS_SET_TILED_CURRENT_PAGE,
+         payload: currentPage
+      }
+   },
+   setTiledPageSize(pageSize) {
+      return {
+         type: types.CONTACTS_SET_TILED_PAGE_SIZE,
+         payload: pageSize
+      }
+   },
 
    //Async
    fetchContacts: () => async dispatch => {
@@ -22,10 +48,14 @@ export const contactsActions = Object.freeze({
          const contactsCount = randomIntegerInRange(100, 1500);
          const response = await fetch(`https://randomuser.me/api/?seed=wezom-react-redux-test&results=${contactsCount}`);
          const contacts = await response.json();
+         const contactsModified = modifyDataForView(contacts.results);
 
-         dispatch({ type: types.CONTACTS_FETCH_CONTACTS, payload: modifyDataForView(contacts.results) });
+         dispatch({ type: types.CONTACTS_FETCH_CONTACTS, payload: contactsModified });
       } catch (error) {
-         console.log(error);
+         notification.error({
+            message: error.message,
+            description: 'Please,try again later',
+         })
       } finally {
          dispatch(contactsActions.stopFetching());
       }

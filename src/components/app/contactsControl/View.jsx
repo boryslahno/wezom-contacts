@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tooltip, Button } from 'antd';
 import { ReloadOutlined, UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 
-const View = ({ reloadData, setViewMode }) => {
+const View = ({ reloadData, setViewMode, viewMode }) => {
+
+   const tableViewButtonType = viewMode === 'tabular' ? 'primary' : 'default';
+   const tiledViewButtonType = viewMode === 'tiled' ? 'primary' : 'default';
 
    const changeViewMode = (event) => {
       const viewMode = event.currentTarget.value;
 
+      event.currentTarget.type = 'primary';
       localStorage.setItem('view-mode', viewMode);
       setViewMode(viewMode);
    }
@@ -24,6 +28,7 @@ const View = ({ reloadData, setViewMode }) => {
          </Tooltip>
          <Tooltip title={'Tiled view'}>
             <Button
+               type={tiledViewButtonType}
                icon={<AppstoreOutlined />}
                value={'tiled'}
                onClick={changeViewMode}
@@ -31,7 +36,7 @@ const View = ({ reloadData, setViewMode }) => {
          </Tooltip>
          <Tooltip title={'Tabular view'}>
             <Button
-               type={'primary'}
+               type={tableViewButtonType}
                icon={<UnorderedListOutlined />}
                value={'tabular'}
                onClick={changeViewMode}

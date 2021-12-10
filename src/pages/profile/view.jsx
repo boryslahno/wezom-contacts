@@ -2,12 +2,15 @@ import React from "react";
 import { Row, Col, Image, Typography, Spin } from 'antd';
 import { ProfileInformation } from '../../components';
 import { useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom';
 
 const View = () => {
 
-   const { personalInformation, isLoading } = useSelector(state => state.auth);
+   const { personalInformation, isLoading, isAuthorized } = useSelector(state => state.auth);
 
-   console.log(isLoading);
+   /*if (!isAuthorized) {
+      return <Navigate to={'/not-found'} />
+   }*/
 
    return (
       <div className={'page page--profile'}>

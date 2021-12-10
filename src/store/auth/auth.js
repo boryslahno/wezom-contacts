@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import { modifyDataForView } from '../../utils/modifyDataForView';
 import { types } from './types';
 
@@ -36,7 +37,10 @@ export const authActions = Object.freeze({
          const personalData = await response.json()
          dispatch({ type: types.AUTH_FETCH_DATA, payload: modifyDataForView(personalData.results)[0] });
       } catch (error) {
-         console.log(error);
+         notification.error({
+            message: error.message,
+            title: 'Please, tyr again later',
+         })
       } finally {
          dispatch(authActions.stopFetching());
       }

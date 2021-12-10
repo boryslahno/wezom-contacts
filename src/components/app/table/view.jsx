@@ -5,11 +5,19 @@ import { InformationString } from "../infoLine";
 import { FilterForm } from '../filterForm';
 import { Statistic } from '../statistic';
 import './style.scss';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { contactsActions } from '../../../store/contacts/contacts';
 
-const View = ({ contacts }) => {
+const View = () => {
 
-   const isLoading = useSelector(state => state.contacts.isLoading);
+   const filteredContacts = useSelector(state => state.filter.filteredContacts);
+   const { isLoading, tablePageSize, tableCurrentPage } = useSelector(state => state.contacts);
+   const dispatch = useDispatch();
+
+   const handleChangePagination = (page, pageSize) => {
+      dispatch(contactsActions.setTableCurrentPage(page));
+      dispatch(contactsActions.setTablePageSize(pageSize));
+   }
 
    const columns = [
       {
@@ -83,14 +91,19 @@ const View = ({ contacts }) => {
    ];
    return (
       <Table
-         dataSource={contacts}
+         dataSource={filteredContacts}
          columns={columns}
          scroll={{ x: 1200 }}
          size="small"
          className={'table'}
          title={() => <FilterForm />}
-         footer={() => <Statistic contacts={contacts} />}
+         footer={() => <Statistic />}
          loading={isLoading}
+         pagination={{
+            defaultPageSize: tablePageSize,
+            defaultCurrent: tableCurrentPage,
+            onChange: handleChangePagination
+         }}
       />
    );
 }

@@ -1,11 +1,13 @@
 import React from "react";
-import { Typography, Row, Col, Statistic, Descriptions, Spin } from 'antd';
+import { Typography, Row, Col, Statistic, Descriptions } from 'antd';
 import { getGendersCount } from '../../../utils/getGendersCount';
 import { determineTheMajority } from '../../../utils/determineTheMajority';
 import { getNumberOfNationalities } from '../../../utils/getNumberOfNationalities';
 import { useSelector } from "react-redux";
 
-const View = ({ contacts }) => {
+const View = () => {
+
+   const contacts = useSelector(state => state.filter.filteredContacts);
 
    const gendersCount = getGendersCount(contacts); /// many renders
    const genderMajority = determineTheMajority(gendersCount);
@@ -46,7 +48,7 @@ const View = ({ contacts }) => {
                   title={'Nationalities'}
                   value={numberOfNationalities}
                   loading={isLoading}
-                  formatter={(nationalities) =>
+                  formatter={nationalities =>
                      <Descriptions column={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 6 }}>
                         {Object.keys(nationalities).map(key =>
                            <Descriptions.Item key={key} label={key} labelStyle={{ 'fontWeight': '700' }}>

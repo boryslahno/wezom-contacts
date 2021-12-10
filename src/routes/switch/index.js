@@ -1,1 +1,1 @@
-export { Switch } from './container';
+export { View as Switch } from './view';

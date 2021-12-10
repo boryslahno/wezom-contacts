@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Logo } from '../logo';
-import { Row, Col, Button, Dropdown, Menu, Typography, Avatar, Spin } from 'antd';
+import { Row, Col, Button, Dropdown, Menu, Typography, Avatar, Spin, notification } from 'antd';
 import { LoginOutlined, DownOutlined, UserOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
 import { NavBar } from '../navbar';
 import { Modal } from '../modal';
@@ -19,19 +19,13 @@ const View = () => {
 
    const showModal = () => dispatch(authActions.openModal());
 
-   useEffect(() => {
-      const user = localStorage.getItem('auth');
-      if (user) {
-         const seedKey = JSON.parse(user).profileSeedKey;
-         dispatch(authActions.setAuthorized(true));
-         dispatch(authActions.fetchPersonalData(seedKey));
-      }
-   }, [dispatch])
-
    const handleLogOut = () => {
       localStorage.removeItem('auth');
       dispatch(authActions.setAuthorized(false));
       history('/');
+      notification.success({
+         message: 'Successfully logged out'
+      })
    }
 
    const menu = (

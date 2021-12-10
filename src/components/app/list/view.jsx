@@ -5,16 +5,23 @@ import { NavLink } from "react-router-dom";
 import { FilterForm } from '../filterForm';
 import { Statistic } from '../statistic';
 import { ProfileInformation } from '../profileInfo';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { contactsActions } from '../../../store/contacts/contacts';
 
-const View = ({ contacts }) => {
+const View = () => {
 
-   const isLoading = useSelector(state => state.contacts.isLoading);
+   const { isLoading, tiledCurrentPage, tiledPageSize } = useSelector(state => state.contacts);
+   const filteredContacts = useSelector(state => state.filter.filteredContacts);
+   const dispatch = useDispatch();
+
+   const handleChangePagination = (page, pageSize) => {
+      dispatch(contactsActions.setTiledPageSize(pageSize));
+      dispatch(contactsActions.setTiledCurrentPage(page));
+   }
 
    return (
       <List
          className={'list'}
-         pagination={{ size: 'small', defaultPageSize: 6, pageSizeOptions: [6, 12, 36, 48] }}
          grid={{
             gutter: 12,
             xs: 1,
@@ -25,8 +32,8 @@ const View = ({ contacts }) => {
             xxl: 3,
          }}
          header={<FilterForm />}
-         footer={<Statistic contacts={contacts} />}
-         dataSource={contacts}
+         footer={<Statistic contacts={filteredContacts} />}
+         dataSource={filteredContacts}
          loading={isLoading}
          renderItem={contact =>
             <List.Item>
@@ -48,6 +55,13 @@ const View = ({ contacts }) => {
                </Card>
             </List.Item>
          }
+         pagination={{
+            size: 'small',
+            defaultPageSize: tiledPageSize,
+            defaultCurrent: tiledCurrentPage,
+            pageSizeOptions: [6, 12, 36, 48],
+            onChange: handleChangePagination,
+         }}
       />
    );
 }
