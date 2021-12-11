@@ -82,7 +82,7 @@ const View = () => {
                   </Col>
                   <Col>
                      {isLoading ?
-                        <Spin indicator={<LoadingOutlined spin style={{ 'color': 'gray' }} />} /> :
+                        <Spin indicator={<LoadingOutlined spin className={'header__spin'} />} /> :
                         button}
                   </Col>
                </Row>

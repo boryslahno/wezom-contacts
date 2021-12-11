@@ -48,10 +48,12 @@
       }
    }
    &--profile {
-      .age {
-         font-size: 18px !important;
-      }
    }
    &--contacts {
+   }
+   &--contactView {
+   }
+   .age {
+      font-size: 18px !important;
    }
 }

@@ -1,7 +1,5 @@
 import React from "react";
-import { Typography, Row, Col } from 'antd'
-
-//Review
+import { Typography, Row, Col } from 'antd';
 
 const View = ({ children, information, className }) => {
 

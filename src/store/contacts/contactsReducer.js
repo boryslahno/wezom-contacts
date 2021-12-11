@@ -2,11 +2,12 @@ import { types } from './types';
 
 const initialState = {
    contacts: [],
-   isLoading: false,
+   isLoading: true,
    tableCurrentPage: 1,
    tablePageSize: 10,
    tiledCurrentPage: 1,
-   tiledPageSize: 6
+   tiledPageSize: 6,
+   sortOrder: '',
 }
 
 const contactsReducer = (state = initialState, action) => {
@@ -25,6 +26,8 @@ const contactsReducer = (state = initialState, action) => {
          return { ...state, tiledCurrentPage: action.payload }
       case types.CONTACTS_SET_TILED_PAGE_SIZE:
          return { ...state, tiledPageSize: action.payload }
+      case types.CONTACTS_SET_SORT_ORDER:
+         return { ...state, sortOrder: action.payload }
       default:
          return state;
    }

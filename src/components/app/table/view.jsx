@@ -11,7 +11,7 @@ import { contactsActions } from '../../../store/contacts/contacts';
 const View = () => {
 
    const filteredContacts = useSelector(state => state.filter.filteredContacts);
-   const { isLoading, tablePageSize, tableCurrentPage } = useSelector(state => state.contacts);
+   const { isLoading, tablePageSize, tableCurrentPage, sortOrder } = useSelector(state => state.contacts);
    const dispatch = useDispatch();
 
    const handleChangePagination = (page, pageSize) => {
@@ -19,12 +19,16 @@ const View = () => {
       dispatch(contactsActions.setTablePageSize(pageSize));
    }
 
+   const handleChangeSort = (pagination, filter, sort) => {
+      dispatch(contactsActions.setSortOrder(sort.order));
+   }
+
    const columns = [
       {
          title: 'Avatar',
          dataIndex: 'avatar',
          key: 'avatar',
-         render: ({ url, userId }) => <NavLink to={'/profile'}>
+         render: ({ url, userId }) => <NavLink to={`/contacts/${userId}`}>
             <Avatar src={url} size={42} />
          </NavLink>,
          fixed: 'left',
@@ -35,10 +39,11 @@ const View = () => {
          title: 'Full Name',
          dataIndex: 'fullName',
          key: 'fullName',
-         render: ({ fullName, userId }) => <NavLink to={'/profile'}>{fullName}</NavLink>,
+         render: ({ fullName, userId }) => <NavLink to={`/contacts/${userId}`} > {fullName}</NavLink>,
          sorter: (firstContact, secondContact) =>
             firstContact.fullName.fullName.localeCompare(secondContact.fullName.fullName),
          align: 'left',
+         defaultSortOrder: sortOrder
       },
       {
          title: 'Birthday',
@@ -104,6 +109,7 @@ const View = () => {
             defaultCurrent: tableCurrentPage,
             onChange: handleChangePagination
          }}
+         onChange={handleChangeSort}
       />
    );
 }

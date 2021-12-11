@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tooltip, Button } from 'antd';
 import { ReloadOutlined, UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
+import './style.scss';
 
 const View = ({ reloadData, setViewMode, viewMode }) => {
 
@@ -22,7 +23,7 @@ const View = ({ reloadData, setViewMode, viewMode }) => {
                type="dashed"
                shape={'circle'}
                icon={<ReloadOutlined />}
-               style={{ 'marginRight': '10px' }}
+               className={'reload_button'}
                onClick={reloadData}
             />
          </Tooltip>

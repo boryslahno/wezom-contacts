@@ -53,7 +53,7 @@ const View = () => {
             <Form.Item name={'password'} extra={'Type any valid password'}
                rules={[
                   { required: true, message: 'The password field is required.' },
-                  { validator: (_, password) => passwordValidate(password), }//??????
+                  { validator: (_, password) => passwordValidate(password), }
                ]}
                hasFeedback
             >
@@ -64,14 +64,14 @@ const View = () => {
 
                />
             </Form.Item>
-            <Form.Item>
+            <Form.Item className={'_m-none'}>
                <Row>
                   <Col flex="1 1 auto">
                      <Button
                         type="primary"
                         htmlType={'submit'}
                         size={'large'}
-                        style={{ 'width': '100%' }}//???????????????
+                        className={'_full_width'}
                      > Sign in</Button>
                   </Col>
                   <Col>

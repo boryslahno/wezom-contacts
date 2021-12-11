@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Form, Row, Col, Input, Select, Checkbox, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { NATIONALITIES } from '../../../constants/nationalities';
@@ -26,27 +26,37 @@ const View = () => {
    const dispatch = useDispatch();
 
    useEffect(() => {
-      console.log(contacts)
       const resultFilterContacts = filterContacts(contacts, searchTerm, gender, nationality, isCreator);
       dispatch(filterActions.setFilteredContacts(resultFilterContacts))
-   }, [searchTerm, gender, nationality, isCreator, clear, contacts])
+   }, [dispatch, searchTerm, gender, nationality, isCreator, clear, contacts])
 
    const handleSearchTermChange = event => {
       dispatch(filterActions.setSearchTerm(event.target.value));
+      dispatch(filterActions.setClear(false))
    }
 
    const handleChangeCreator = event => {
       dispatch(filterActions.setIsCreator(event.target.checked));
+      dispatch(filterActions.setClear(false))
    }
 
    const handleChangeGender = gender => {
       dispatch(filterActions.setGender(gender));
+      dispatch(filterActions.setClear(false))
    }
 
    const handelChangeNationality = nationalities => {
       dispatch(filterActions.setNationality(nationalities))
+      dispatch(filterActions.setClear(false))
    }
 
+   const handleChangeClear = () => {
+      dispatch(filterActions.setClear(true));
+      dispatch(filterActions.setSearchTerm(''));
+      dispatch(filterActions.setIsCreator(false));
+      dispatch(filterActions.setGender(null));
+      dispatch(filterActions.setNationality([]))
+   }
    return (
       <Form>
          <div className={'box'}>
@@ -57,7 +67,7 @@ const View = () => {
                         <Input.Search
                            placeholder={'Search by full name'}
                            size="large"
-                           defaultValue={searchTerm}
+                           value={searchTerm}
                            onChange={handleSearchTermChange}
                         />
                      </Col>
@@ -65,8 +75,8 @@ const View = () => {
                         <Select
                            placeholder={'Gender'}
                            size={'large'}
-                           style={{ 'width': '100%' }}
-                           defaultValue={gender}
+                           className={'_full_width'}
+                           value={gender}
                            onChange={handleChangeGender}
                         >
                            <Select.Option value={'male'}>
@@ -86,28 +96,33 @@ const View = () => {
                            size={'large'}
                            mode={'multiple'}
                            maxTagCount={2}
-                           style={{ 'width': '100%' }}
-                           defaultValue={nationality}
+                           className={'_full_width'}
+                           value={nationality}
                            onChange={handelChangeNationality}
                         >
                            {nationalities}
                         </Select>
                      </Col>
                      <Col xs={24} sm={6} lg={4}>
-                        <Checkbox defaultChecked={isCreator} onChange={handleChangeCreator}>
+                        <Checkbox checked={isCreator} onChange={handleChangeCreator}>
                            I am creator
                         </Checkbox>
                      </Col>
                   </Row>
                </Col>
                <Col className={'_flex-noshrink'}>
-                  <Button disabled={clear} type={'link'} icon={<CloseOutlined />}>
+                  <Button
+                     disabled={clear}
+                     type={'link'}
+                     icon={<CloseOutlined />}
+                     onClick={handleChangeClear}
+                  >
                      Clear
                   </Button>
                </Col>
             </Row>
          </div>
-      </Form >
+      </Form>
    );
 }
 

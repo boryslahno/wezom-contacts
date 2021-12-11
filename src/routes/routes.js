@@ -1,4 +1,4 @@
-import { HomePage, ProfilePage, ContactsPage } from "../pages";
+import { HomePage, ProfilePage, ContactsPage, ContactView } from "../pages";
 
 export const routes = Object.freeze({
    'home': {
@@ -16,5 +16,11 @@ export const routes = Object.freeze({
       path: '/contacts',
       page: ContactsPage,
       name: 'Contacts',
+      exact: true,
    },
+   'viewContact': {
+      path: '/contacts/:id',
+      page: ContactView,
+      name: 'ContactView'
+   }
 });

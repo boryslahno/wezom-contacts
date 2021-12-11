@@ -12,16 +12,16 @@ const View = () => {
    }
 
    const [viewMode, setViewMode] = useState(localStorage.getItem('view-mode'));
-   //const isAuthorized = useSelector(state => state.auth.isAuthorized);
+   const isAuthorized = localStorage.getItem('auth');
    const dispatch = useDispatch();
 
    useEffect(() => {
       dispatch(contactsActions.fetchContacts());
    }, [dispatch])
 
-   /*if (!isAuthorized) {
+   if (!isAuthorized) {
       return <Navigate to={'/not-found'} />
-   }*/
+   }
 
    const handleReloadData = () => dispatch(contactsActions.fetchContacts());
 

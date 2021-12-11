@@ -2,7 +2,6 @@ import { randomIntegerInRange } from '../../utils/random';
 import { modifyDataForView } from '../../utils/modifyDataForView';
 import { types } from './types';
 import { notification } from 'antd';
-import { filterActions } from '../filter/filter';
 
 export const contactsActions = Object.freeze({
 
@@ -38,6 +37,12 @@ export const contactsActions = Object.freeze({
       return {
          type: types.CONTACTS_SET_TILED_PAGE_SIZE,
          payload: pageSize
+      }
+   },
+   setSortOrder(order) {
+      return {
+         type: types.CONTACTS_SET_SORT_ORDER,
+         payload: order
       }
    },
 
