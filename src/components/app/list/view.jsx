@@ -39,13 +39,13 @@ const View = () => {
             <List.Item>
                <Card hoverable
                   className={'card-contact'}
-                  cover={<NavLink to={'/profile'}>
+                  cover={<NavLink to={`/contacts/${contact.fullName.userId}`}>
                      <img alt={contact.fullName.fullName} src={contact.avatar.url} />
                   </NavLink>}
                >
                   <Card.Meta title={
                      <>
-                        <NavLink to={'/profile'}>
+                        <NavLink to={`/contacts/${contact.fullName.userId}`}>
                            {contact.fullName.fullName} {contact.birthday[1]}
                         </NavLink>
                      </>

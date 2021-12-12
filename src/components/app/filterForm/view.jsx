@@ -10,7 +10,7 @@ const View = () => {
 
    const nationalities = useMemo(() =>
       Object.values(NATIONALITIES).map(({ name }) =>
-         <Select.Option value={name}>
+         <Select.Option key={name} value={name}>
             {name}
          </Select.Option>
       ), []);
@@ -57,6 +57,7 @@ const View = () => {
       dispatch(filterActions.setGender(null));
       dispatch(filterActions.setNationality([]))
    }
+
    return (
       <Form>
          <div className={'box'}>

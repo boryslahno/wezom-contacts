@@ -41,7 +41,7 @@ const View = () => {
          footer={null}
       >
          <Form onFinish={handleSubmit}>
-            <Form.Item name={'email'} extra={'Type any valid email'}
+            <Form.Item name={'email'}
                rules={[
                   { type: 'email', message: 'The email format is invalid.' },
                   { required: true, message: 'The email field is required.' }
@@ -50,7 +50,7 @@ const View = () => {
             >
                <Input placeholder={'Email'} size={'large'} prefix={<UserOutlined />} />
             </Form.Item>
-            <Form.Item name={'password'} extra={'Type any valid password'}
+            <Form.Item name={'password'}
                rules={[
                   { required: true, message: 'The password field is required.' },
                   { validator: (_, password) => passwordValidate(password), }

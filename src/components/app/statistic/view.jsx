@@ -9,7 +9,7 @@ const View = () => {
 
    const contacts = useSelector(state => state.filter.filteredContacts);
 
-   const gendersCount = getGendersCount(contacts); /// many renders
+   const gendersCount = getGendersCount(contacts);
    const genderMajority = determineTheMajority(gendersCount);
    const numberOfNationalities = getNumberOfNationalities(contacts);
    const isLoading = useSelector(state => state.contacts.isLoading);

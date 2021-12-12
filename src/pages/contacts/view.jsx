@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Typography } from 'antd';
 import { TableView, ListView, ContactsControl } from '../../components';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { contactsActions } from '../../store/contacts/contacts';
 import { Navigate } from "react-router-dom";
 

@@ -36,17 +36,17 @@ const View = () => {
                <Typography.Title level={2} className={'_m-none'}>Contact View</Typography.Title>
             </Col>
             <Col>
-               <Row gutter={[28, { md: 28 }]} justify={'center'}>
+               <Row gutter={[0, { sm: 28, xs: 28 }]} className={'contact-row'} justify={'center'}>
                   {isLoading ?
                      <Col><Spin size={'large'} /></Col> :
                      <>
-                        <Col lg={11}>
+                        <Col lg={11} className={'contact-column'}>
                            <Image
                               width={250}
                               src={contact.avatar.url}
                            />
                         </Col>
-                        <Col lg={13}>
+                        <Col lg={13} className={'contact-column'}>
                            <Typography.Title level={3}>
                               {contact.fullName.fullName}
                               <Typography.Text type={'secondary'} className={'age'}>

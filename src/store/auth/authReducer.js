@@ -3,7 +3,7 @@ import { types } from './types';
 const intitialState = {
    isModalOpen: false,
    personalInformation: {},
-   isLoading: false,
+   isLoading: true,
    isAuthorized: false,
 }
 

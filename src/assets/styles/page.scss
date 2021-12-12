@@ -48,10 +48,38 @@
       }
    }
    &--profile {
+      .profile-row {
+         margin: 0px -14px;
+
+         @media (max-width: 560px) {
+            margin: 0 !important;
+         }
+      }
+      .profile-column {
+         padding: 0px 14px;
+
+         @media (max-width: 560px) {
+            padding: 0 !important;
+         }
+      }
    }
    &--contacts {
    }
    &--contactView {
+      .contact-row {
+         margin: 0px -14px;
+
+         @media (max-width: 560px) {
+            margin: 0 !important;
+         }
+      }
+      .contact-column {
+         padding: 0px 14px;
+
+         @media (max-width: 560px) {
+            padding: 0 !important;
+         }
+      }
    }
    .age {
       font-size: 18px !important;
