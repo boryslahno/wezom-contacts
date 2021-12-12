@@ -21,17 +21,17 @@ const View = ({ reloadData, setViewMode, viewMode }) => {
          <Tooltip title={'Update data'}>
             <Button
                type="dashed"
-               shape={'circle'}
+               shape='circle'
                icon={<ReloadOutlined />}
-               className={'reload_button'}
+               className='reload_button'
                onClick={reloadData}
             />
          </Tooltip>
-         <Tooltip title={'Tiled view'}>
+         <Tooltip title='Tiled view'>
             <Button
                type={tiledViewButtonType}
                icon={<AppstoreOutlined />}
-               value={'tiled'}
+               value='tiled'
                onClick={changeViewMode}
             />
          </Tooltip>
@@ -39,7 +39,7 @@ const View = ({ reloadData, setViewMode, viewMode }) => {
             <Button
                type={tableViewButtonType}
                icon={<UnorderedListOutlined />}
-               value={'tabular'}
+               value='tabular'
                onClick={changeViewMode}
             />
          </Tooltip>

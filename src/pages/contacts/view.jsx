@@ -37,8 +37,8 @@ const View = () => {
    }
 
    return (
-      <div className={'page page--contacts'}>
-         <Row justify={'space-between'}>
+      <div className='page page--contacts'>
+         <Row justify='space-between'>
             <Col>
                <Typography.Title level={2}>Contacts</Typography.Title>
             </Col>

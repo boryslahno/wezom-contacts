@@ -1,3 +1,1 @@
-import { Switch as RoutesSwitch } from './switch';
-
-export { RoutesSwitch };
+export { Switch as RoutesSwitch } from './switch';

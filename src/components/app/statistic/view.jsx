@@ -15,26 +15,26 @@ const View = () => {
    const isLoading = useSelector(state => state.contacts.isLoading);
 
    return (
-      <div className={'box'}>
+      <div className='box'>
          <Typography.Title level={3}>
             Statistic
          </Typography.Title>
          <Row gutter={[36, 24]}>
-            <Col className={'_flex-noshrink'}>
+            <Col className='_flex-noshrink'>
                <Statistic title="Collection size" value={contacts.length} loading={isLoading} />
             </Col>
-            <Col className={'_flex-noshrink'}>
+            <Col className='_flex-noshrink'>
                <Row>
                   <Col>
                      <Row gutter={16}>
                         <Col>
-                           <Statistic title={'Males'} value={gendersCount.male} loading={isLoading} />
+                           <Statistic title='Males' value={gendersCount.male} loading={isLoading} />
                         </Col>
                         <Col>
-                           <Statistic title={'Females'} value={gendersCount.female} loading={isLoading} />
+                           <Statistic title='Females' value={gendersCount.female} loading={isLoading} />
                         </Col>
                         <Col>
-                           <Statistic title={'Indeterminate'} value={gendersCount.indeterminate} loading={isLoading} />
+                           <Statistic title='Indeterminate' value={gendersCount.indeterminate} loading={isLoading} />
                         </Col>
                      </Row>
                   </Col>
@@ -45,7 +45,7 @@ const View = () => {
             </Col>
             <Col span={24}>
                <Statistic
-                  title={'Nationalities'}
+                  title='Nationalities'
                   value={numberOfNationalities}
                   loading={isLoading}
                   formatter={nationalities =>

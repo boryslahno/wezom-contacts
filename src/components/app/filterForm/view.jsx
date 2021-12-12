@@ -60,44 +60,44 @@ const View = () => {
 
    return (
       <Form>
-         <div className={'box'}>
-            <Row gutter={[12, 12]} align={'middle'} justify={'center'}>
-               <Col className={'_flex-grow'}>
-                  <Row gutter={[12, 12]} align={'middle'} justify={'center'}>
+         <div className='box'>
+            <Row gutter={[12, 12]} align='middle' justify='center'>
+               <Col className='_flex-grow'>
+                  <Row gutter={[12, 12]} align='middle' justify='center'>
                      <Col xs={24} lg={11}>
                         <Input.Search
-                           placeholder={'Search by full name'}
-                           size="large"
+                           placeholder='Search by full name'
+                           size='large'
                            value={searchTerm}
                            onChange={handleSearchTermChange}
                         />
                      </Col>
                      <Col xs={24} sm={10} lg={4}>
                         <Select
-                           placeholder={'Gender'}
-                           size={'large'}
-                           className={'_full_width'}
+                           placeholder='Gender'
+                           size='large'
+                           className='_full_width'
                            value={gender}
                            onChange={handleChangeGender}
                         >
-                           <Select.Option value={'male'}>
+                           <Select.Option value='male'>
                               Male
                            </Select.Option>
-                           <Select.Option value={'female'}>
+                           <Select.Option value='female'>
                               Female
                            </Select.Option>
-                           <Select.Option value={'ideterminate'}>
+                           <Select.Option value='ideterminate'>
                               Ideterminate
                            </Select.Option>
                         </Select>
                      </Col>
                      <Col xs={24} sm={14} lg={5}>
                         <Select
-                           placeholder={'Nationality'}
-                           size={'large'}
-                           mode={'multiple'}
+                           placeholder='Nationality'
+                           size='large'
+                           mode='multiple'
                            maxTagCount={2}
-                           className={'_full_width'}
+                           className='_full_width'
                            value={nationality}
                            onChange={handelChangeNationality}
                         >
@@ -111,10 +111,10 @@ const View = () => {
                      </Col>
                   </Row>
                </Col>
-               <Col className={'_flex-noshrink'}>
+               <Col className='_flex-noshrink'>
                   <Button
                      disabled={clear}
-                     type={'link'}
+                     type='link'
                      icon={<CloseOutlined />}
                      onClick={handleChangeClear}
                   >

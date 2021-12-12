@@ -30,26 +30,26 @@ const View = () => {
 
 
    return (
-      <div className={'page page--contactView'}>
-         <Row justify={'center'} gutter={[0, 20]}>
-            <Col span={24} className={'_text-center'}>
-               <Typography.Title level={2} className={'_m-none'}>Contact View</Typography.Title>
+      <div className='page page--contactView'>
+         <Row justify='center' gutter={[0, 20]}>
+            <Col span={24} className='_text-center'>
+               <Typography.Title level={2} className='_m-none'>Contact View</Typography.Title>
             </Col>
             <Col>
-               <Row gutter={[0, { sm: 28, xs: 28 }]} className={'contact-row'} justify={'center'}>
+               <Row gutter={[0, { sm: 28, xs: 28 }]} className='contact-row' justify='center'>
                   {isLoading ?
-                     <Col><Spin size={'large'} /></Col> :
+                     <Col><Spin size='large' /></Col> :
                      <>
-                        <Col lg={11} className={'contact-column'}>
+                        <Col lg={11} className='contact-column'>
                            <Image
                               width={250}
                               src={contact.avatar.url}
                            />
                         </Col>
-                        <Col lg={13} className={'contact-column'}>
+                        <Col lg={13} className='contact-column'>
                            <Typography.Title level={3}>
                               {contact.fullName.fullName}
-                              <Typography.Text type={'secondary'} className={'age'}>
+                              <Typography.Text type='secondary' className='age'>
                                  {` (${contact.birthday.age})`}
                               </Typography.Text>
                            </Typography.Title>
@@ -59,9 +59,9 @@ const View = () => {
                   }
                </Row>
             </Col>
-            <Col span={24} className={'_text-center'}>
+            <Col span={24} className='_text-center'>
                <Button
-                  type={'primary'}
+                  type='primary'
                   icon={<DoubleLeftOutlined />}
                   onClick={handleClickBack}
                >

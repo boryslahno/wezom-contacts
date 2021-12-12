@@ -1,4 +1,4 @@
-import { HomePage, ProfilePage, ContactsPage, ContactView } from "../pages";
+import { HomePage, ProfilePage, ContactsPage, ContactView, PageNotFound } from "../pages";
 
 export const routes = Object.freeze({
    'home': {
@@ -21,6 +21,11 @@ export const routes = Object.freeze({
    'viewContact': {
       path: '/contacts/:id',
       page: ContactView,
-      name: 'ContactView'
+      name: 'ContactView',
+   },
+   pageNotFound: {
+      path: '/*',
+      page: PageNotFound,
+      name: 'PageNotFound',
    }
 });

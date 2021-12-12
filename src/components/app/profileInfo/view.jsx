@@ -6,19 +6,19 @@ const View = ({ profileData }) => {
 
    return (
       <>
-         <Divider dashed className={'_m-bottom_15'} />
+         <Divider dashed className='_m-bottom_15' />
 
-         <InformationString information={profileData.email} className={'_m-bottom_10'}>
+         <InformationString information={profileData.email} className='_m-bottom_10'>
             <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
          </InformationString>
 
-         <InformationString information={profileData.phone} className={'_m-bottom_10'}>
+         <InformationString information={profileData.phone} className='_m-bottom_10'>
             <a href={`tel:${profileData.phone}`}>{profileData.phone}</a>
          </InformationString>
 
          <InformationString
             information={profileData.location.country + profileData.location.address}
-            className={'_m-bottom_15'}>
+            className='_m-bottom_15'>
             <Typography.Text>
                <strong>{profileData.location.country}</strong>
                <br />
@@ -26,7 +26,7 @@ const View = ({ profileData }) => {
             </Typography.Text>
          </InformationString>
 
-         <Divider dashed className={'_m-bottom_15'} />
+         <Divider dashed className='_m-bottom_15' />
          <Tag color={profileData.nationality.tagColor}>{profileData.nationality.name}</Tag>
       </>
    );

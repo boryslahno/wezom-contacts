@@ -21,7 +21,7 @@ const View = () => {
 
    return (
       <List
-         className={'list'}
+         className='list'
          grid={{
             gutter: 12,
             xs: 1,
@@ -38,7 +38,7 @@ const View = () => {
          renderItem={contact =>
             <List.Item>
                <Card hoverable
-                  className={'card-contact'}
+                  className='card-contact'
                   cover={<NavLink to={`/contacts/${contact.fullName.userId}`}>
                      <img alt={contact.fullName.fullName} src={contact.avatar.url} />
                   </NavLink>}

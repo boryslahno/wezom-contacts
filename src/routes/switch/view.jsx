@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import { routes } from '../routes';
 import { LayoutBase } from '../../layout';
-import { PageNotFound } from "../../pages";
 
 const View = () => {
 
@@ -20,7 +19,6 @@ const View = () => {
                   />
                })
             }
-            <Route path={'/*'} element={<PageNotFound />} />
          </Routes>
       </LayoutBase>
    )

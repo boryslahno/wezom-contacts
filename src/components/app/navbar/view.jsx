@@ -18,20 +18,26 @@ const View = () => {
    ], [])
 
    return (
-      <div className={'navbar'}>
-         <ul className={'navbar__list'}>
+      <div className='navbar'>
+         <ul className='navbar__list'>
             {isAuth ?
                privateRoutes.map(route =>
-                  <li key={route.key} className={'navbar__item'}>
-                     <NavLink to={routes[route.key].path} className={'navbar__link'}>
+                  <li key={route.key} className='navbar__item'>
+                     <NavLink
+                        to={routes[route.key].path}
+                        className='navbar__link'
+                        activeclassname='active'>
                         {route.name}
                      </NavLink>
                   </li>
                )
                :
                publicRoutes.map(route =>
-                  <li key={route.key} className={'navbar__item'}>
-                     <NavLink to={routes[route.key].path} className={'navbar__link'}>
+                  <li key={route.key} className='navbar__item'>
+                     <NavLink
+                        to={routes[route.key].path}
+                        className='navbar__link'
+                        activeclassname='active'>
                         {route.name}
                      </NavLink>
                   </li>

@@ -1,0 +1,13 @@
+.dropdown {
+   &__title {
+      &:hover {
+         color: #40a3ff;
+      }
+      @media (max-width: 768px) {
+         display: none;
+      }
+   }
+   &__spin {
+      color: gray !important;
+   }
+}

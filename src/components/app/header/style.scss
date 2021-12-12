@@ -9,31 +9,4 @@
    &__logo {
       margin-right: 36px;
    }
-   .dropdown {
-      &__title {
-         &:hover {
-            color: #40a3ff;
-         }
-         @media (max-width: 768px) {
-            display: none;
-         }
-      }
-      &__menu {
-         width: 225px !important;
-      }
-      &__spin {
-         color: gray !important;
-      }
-   }
-}
-.ant-dropdown-menu-item {
-   color: gray !important;
-}
-.ant-dropdown-menu-item-active {
-   background: none !important;
-   color: #40a3ff !important;
-}
-
-.dropdown__icon {
-   margin-right: 15px;
 }

@@ -20,4 +20,8 @@
 
    &__link {
    }
+   .active {
+      color: gray !important;
+      pointer-events: none;
+   }
 }

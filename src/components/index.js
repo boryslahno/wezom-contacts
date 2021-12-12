@@ -1,5 +1,4 @@
 export { Header } from './app/header';
-export { Root } from './app/root';
 export { Logo } from './app/logo';
 export { NavBar } from './app/navbar';
 export { Modal } from './app/modal';
@@ -10,3 +9,5 @@ export { Statistic } from './app/statistic';
 export { ListView } from './app/list';
 export { ContactsControl } from './app/contactsControl';
 export { ProfileInformation } from './app/profileInfo';
+export { DropDown } from './app/dropdown';
+export { Menu } from './app/dropdownMenu';
