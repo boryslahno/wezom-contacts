@@ -19,7 +19,7 @@ export const logger = createLogger({
 });
 
 const history = createBrowserHistory({
-   basename: '/'
+   basename: '/wezom-contacts/'
 });
 
 const myRouterMiddleware = routerMiddleware(history);

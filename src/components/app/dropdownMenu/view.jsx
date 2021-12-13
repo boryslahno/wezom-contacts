@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { authActions } from '../../../store/auth/auth';
 import { Menu, notification } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
@@ -8,20 +8,20 @@ import './style.scss';
 
 const View = () => {
 
-   const history = useNavigate();
+   const history = useHistory();
    const dispatch = useDispatch();
 
    const handleLogOut = () => {
       localStorage.removeItem('auth');
       dispatch(authActions.setAuthorized(false));
-      history('/');
+      history.push('/');
       notification.success({
          message: 'Successfully logged out'
       })
    }
 
    const handleGoToProfile = () => {
-      history('/profile');
+      history.push('/profile');
    }
 
    return (

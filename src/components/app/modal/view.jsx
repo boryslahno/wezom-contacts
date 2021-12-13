@@ -1,14 +1,14 @@
 import React from "react";
 import { Modal, Button, Form, Input, Row, Col } from 'antd';
 import { CloseOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from '../../../store/auth/auth';
 import { passwordValidate } from '../../../utils/passwordValidate';
 
 const View = () => {
 
-   const history = useNavigate();
+   const history = useHistory();
    const dispatch = useDispatch();
    const isModalOpen = useSelector(state => state.auth.isModalOpen);
 
@@ -19,7 +19,7 @@ const View = () => {
       dispatch(authActions.setAuthorized(true));
       dispatch(authActions.closeModal());
       dispatch(authActions.fetchPersonalData(formData.email));
-      history('/profile');
+      history.push('/profile');
    }
 
    return (

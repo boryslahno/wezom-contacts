@@ -35,7 +35,7 @@ const View = ({ reloadData, setViewMode, viewMode }) => {
                onClick={changeViewMode}
             />
          </Tooltip>
-         <Tooltip title={'Tabular view'}>
+         <Tooltip title='Tabular view'>
             <Button
                type={tableViewButtonType}
                icon={<UnorderedListOutlined />}

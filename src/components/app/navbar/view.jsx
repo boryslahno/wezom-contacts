@@ -26,7 +26,8 @@ const View = () => {
                      <NavLink
                         to={routes[route.key].path}
                         className='navbar__link'
-                        activeclassname='active'>
+                        activeclassname='active'
+                        exact>
                         {route.name}
                      </NavLink>
                   </li>
@@ -37,7 +38,8 @@ const View = () => {
                      <NavLink
                         to={routes[route.key].path}
                         className='navbar__link'
-                        activeclassname='active'>
+                        activeclassname='active'
+                        exact>
                         {route.name}
                      </NavLink>
                   </li>

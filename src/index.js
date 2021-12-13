@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from './store';
@@ -11,9 +10,9 @@ import { RoutesSwitch } from './routes';
 
 ReactDOM.render(
   <ReduxProvider store={store}>
-    <BrowserRouter history={history}>
+    <ConnectedRouter history={history}>
       <RoutesSwitch />
-    </BrowserRouter>
+    </ConnectedRouter>
   </ReduxProvider>,
   document.getElementById('root')
 );

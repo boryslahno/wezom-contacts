@@ -3,7 +3,7 @@ import { Row, Col, Typography } from 'antd';
 import { TableView, ListView, ContactsControl } from '../../components';
 import { useDispatch } from "react-redux";
 import { contactsActions } from '../../store/contacts/contacts';
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const View = () => {
 
@@ -20,7 +20,7 @@ const View = () => {
    }, [dispatch])
 
    if (!isAuthorized) {
-      return <Navigate to={'/not-found'} />
+      return <Redirect to={'/not-found'} />
    }
 
    const handleReloadData = () => dispatch(contactsActions.fetchContacts());

@@ -1,13 +1,13 @@
 import React from "react";
 import { Row, Col, Typography, Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../../assets/styles/page.scss';
 
 const View = () => {
 
-   const history = useNavigate();
+   const history = useHistory();
 
-   const handleGoToHome = () => history('/');
+   const handleGoToHome = () => history.push('/');
 
    return (
       <div className='page page--notFound'>

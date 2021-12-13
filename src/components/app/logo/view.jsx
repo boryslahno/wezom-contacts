@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 const View = React.memo(() => {
 
    return (
-      <NavLink to='/' exact='true' className='logo' activeclassname='active'>
+      <NavLink to='/' exact className='logo' activeclassname='active'>
          <img src={WezomLogo} alt='Wezom' className='logo__img' />
       </NavLink>
    );

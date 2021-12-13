@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { routes } from '../routes';
 import { LayoutBase } from '../../layout';
 
@@ -7,7 +7,7 @@ const View = () => {
 
    return (
       <LayoutBase>
-         <Routes >
+         <Switch >
             {
                Object.keys(routes).map((key) => {
                   const { page: Page, ...route } = routes[key];
@@ -15,11 +15,10 @@ const View = () => {
                   return <Route
                      key={route.path}
                      {...route}
-                     element={<Page />}
-                  />
+                  ><Page /></Route>
                })
             }
-         </Routes>
+         </Switch>
       </LayoutBase>
    )
 }

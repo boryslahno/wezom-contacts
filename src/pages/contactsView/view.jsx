@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Row, Col, Typography, Spin, Button, Image } from 'antd';
 import { ProfileInformation } from '../../components';
 import { DoubleLeftOutlined } from '@ant-design/icons';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { contactsActions } from '../../store/contacts/contacts';
 
 const View = () => {
@@ -12,12 +12,12 @@ const View = () => {
    const { contacts, isLoading } = useSelector(state => state.contacts);
    const isAuthorized = localStorage.getItem('auth');
    const { id } = useParams();
-   const history = useNavigate();
+   const history = useHistory();
    const contact = contacts[id - 1];
    const dispatch = useDispatch();
 
    const handleClickBack = () => {
-      history('/contacts');
+      history.push('/contacts');
    }
 
    useEffect(() => {
@@ -25,7 +25,7 @@ const View = () => {
    }, [dispatch])
 
    if (!isAuthorized) {
-      return <Navigate to={'/not-found'} />
+      return <Redirect to={'/not-found'} />
    }
 
 

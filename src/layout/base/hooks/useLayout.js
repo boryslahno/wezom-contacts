@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { authActions } from '../../../store/auth/auth';
 
 export const useLayout = () => {
    const currentYear = useMemo(() => new Date().getFullYear(), []);
    const dispatch = useDispatch();
-   const history = useNavigate();
+   const history = useHistory();
+
    useEffect(() => {
       const user = localStorage.getItem('auth');
       if (user) {
@@ -21,7 +22,7 @@ export const useLayout = () => {
 
       if (!user) {
 
-         history('/');
+         history.push('/');
          dispatch(authActions.setAuthorized(false));
          return;
       }
@@ -29,7 +30,7 @@ export const useLayout = () => {
 
       dispatch(authActions.fetchPersonalData(seedKey));
       dispatch(authActions.setAuthorized(true));
-      history('/profile');
+      history.push('/profile');
 
    }, [dispatch, history])
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Image, Typography, Spin } from 'antd';
 import { ProfileInformation } from '../../components';
 import { useSelector } from "react-redux";
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const View = () => {
 
@@ -10,7 +10,7 @@ const View = () => {
    const isAuthorized = localStorage.getItem('auth');
 
    if (!isAuthorized) {
-      return <Navigate to={'/not-found'} />
+      return <Redirect to={'/not-found'} />
    }
 
    return (
